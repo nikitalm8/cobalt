@@ -1,7 +1,14 @@
 import { Innertube } from 'youtubei.js';
 import { maxVideoDuration } from '../../config.js';
 
-const yt = await Innertube.create();
+const HttpsProxyAgent = require('https-proxy-agent');
+const proxyAgent = new HttpsProxyAgent('http://46.250.171.31:8080');
+
+const yt = await Innertube.create({
+    fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+        return fetch(request, init, {agent: proxyAgent});
+    }
+});
 
 const c = {
     h264: {
