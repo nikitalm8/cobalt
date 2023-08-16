@@ -5,9 +5,9 @@ const HttpsProxyAgent = require('https-proxy-agent');
 const proxyAgent = new HttpsProxyAgent('http://TG:ProxySoxyBot@188.130.220.99:5500');
 
 const yt = await Innertube.create({
-    fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
-        return fetch(request, Object.assign({}, init, {agent: proxyAgent}));
-    }
+  fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
+    return fetch(request, init);
+  }
 });
 
 const c = {
